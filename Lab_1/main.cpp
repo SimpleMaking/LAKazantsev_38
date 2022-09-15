@@ -6,12 +6,12 @@ using namespace std;
 vector<float> func_eratosf(int n, float* curr_arr, vector<float> ready_arr)
 {
 	size_t i = 2, j = 0;
-	while (i < pow(n, 0.5))         // проходим до половины исходного массива по первому итератору
+	while (i < pow(n, 0.5))         // iterate up to half of the original arr by the first iterator
 	{
-		if (curr_arr[i] != 0)         // если элемент еще есть в исходном массиве 
+		if (curr_arr[i] != 0)         // if the element is still in the original arr 
 		{
-			j = pow(i, 2);              // на первой итерации мы избавляемся от всех четных чисел, кроме 2,
-			                              //а уже на последующих от всех остальных не простых
+			j = pow(i, 2);              // on the first itter: all even numbers except 2
+			                              // on all remain: all non-prime numbers
 			while (j <= n)
 			{
 				curr_arr[j] = 0;
@@ -32,16 +32,16 @@ vector<float> func_eratosf(int n, float* curr_arr, vector<float> ready_arr)
 int main(void)
 {
 	vector<float> ready_arr;
-	short n = 9; // колличество чисел в исходном массиве
+	short n = 9; // count of numbers in the original arr
 
 	float* curr_arr = new float[n];
-	for (size_t i = 0; i <= n; ++i)  // формирование начального массива  
+	for (size_t i = 0; i <= n; ++i)  // formation of the initial arr  
 		curr_arr[i] = i;
 
-	curr_arr[1] = 0;              // применение алгоритма                                   
+	curr_arr[1] = 0;              // application of the algorithm                                 
 	ready_arr = func_eratosf(n, curr_arr, ready_arr); 
 
-	for (size_t i = 0; i < ready_arr.size(); ++i) // вывод готовых данных 
+	for (size_t i = 0; i < ready_arr.size(); ++i) // ready data output
 		cout << ready_arr[i] << " ";
 
 	return 0;
