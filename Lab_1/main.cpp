@@ -24,7 +24,7 @@ vector<float> func_eratosf(int n, float* curr_arr, vector<float> ready_arr)
 	for (size_t i = 0; i < n; ++i) 
 		if (curr_arr[i] != 0)
 			ready_arr.push_back(curr_arr[i]);
-
+	
 	return ready_arr;
 }
 
@@ -43,7 +43,8 @@ int main(void)
 
 	for (size_t i = 0; i < ready_arr.size(); ++i) // ready data output
 		cout << ready_arr[i] << " ";
+    
 	ready_arr.clear();
-
+	
 	return 0;
 }
