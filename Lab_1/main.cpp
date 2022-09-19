@@ -43,6 +43,7 @@ int main(void)
 
 	for (size_t i = 0; i < ready_arr.size(); ++i) // ready data output
 		cout << ready_arr[i] << " ";
+	ready_arr.clear();
 
 	return 0;
 }
