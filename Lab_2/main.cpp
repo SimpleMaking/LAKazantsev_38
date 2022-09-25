@@ -88,15 +88,15 @@ double** matrix_transposition(size_t N, double** matrix, double** result_matrix)
  * @return returns the result of adding two matrices
  */
 void GetMatrix(double** matrix, double** p, int i, int j, int m) {
-	int ki, kj, di, dj;
+	short di, dj;
 	di = 0;
-	for (ki = 0; ki < m - 1; ki++)  //check row index
+	for (size_t ki = 0; ki < m - 1; ki++)  //check row index
 	{
 		if (ki == i) 
 			di = 1;
 
 		dj = 0;
-		for (kj = 0; kj < m - 1; kj++) //check column index
+		for (size_t kj = 0; kj < m - 1; kj++) //check column index
 		{ 
 			if (kj == j) 
 				dj = 1;
@@ -201,6 +201,7 @@ int main(void)
 {
 	srand(time(0));
 	size_t N = 0, W = 0;
+	cout << "enter a number between 1 and 8\n"; 
 	cin >> N;
 	do
 	{
