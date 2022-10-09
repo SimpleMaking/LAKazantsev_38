@@ -1,18 +1,28 @@
 #include "main_header.h"
 
 
-
-swordsman::swordsman(double pwr = 1000, double st = 350, double dist = 100, double pr = 80, string tp = "") : power(pwr), stamina(st), distance(dist), price(pr), type(tp)
+/*
+ * assignment constructor
+ */
+Swordsman::Swordsman(double pwr = 1000, double st = 350, double dist = 100, double pr = 80, string tp = "") : power(pwr), stamina(st), distance(dist), price(pr), type(tp)
 {}
 
 
-void swordsman::output(StreamTable& table)
+/*
+ * ooutput warrior data in the table
+ */
+void Swordsman::output(StreamTable& table)
 {
 	table << "swordsman" << power << stamina << distance << price << type;
 }
 
 
-void swordsman::genRandomValues(bool flag)
+/*
+ * generation of random warrior values
+ *
+ * @param flag flag for identification of warrior type.
+ */
+void Swordsman::genRandomValues(bool flag)
 {
 	if (flag)
 	{
@@ -33,17 +43,28 @@ void swordsman::genRandomValues(bool flag)
 }
 
 
-archer::archer(double pwr = 200, double st = 700, double dist = 1000, double pr = 50, string tp = "") : power(pwr), stamina(st), distance(dist), price(pr), type(tp)
+/*
+ * assignment constructor
+ */
+Archer::Archer(double pwr = 200, double st = 700, double dist = 1000, double pr = 50, string tp = "") : power(pwr), stamina(st), distance(dist), price(pr), type(tp)
 {}
 
 
-void archer::output(StreamTable& table)
+/*
+ * ooutput warrior data in the table
+ */
+void Archer::output(StreamTable& table)
 {
 	table << "archer" << power << stamina << distance << price << type;
 }
 
 
-void archer::genRandomValues(bool flag)
+/*
+ * generation of random warrior values
+ *
+ * @param flag flag for identification of warrior type.
+ */
+void Archer::genRandomValues(bool flag)
 {
 	if (flag)
 	{
@@ -64,17 +85,28 @@ void archer::genRandomValues(bool flag)
 }
 
 
-wizard::wizard(double pwr = 700, double st = 200, double dist = 1000, double pr = 50, string tp = "") : power(pwr), stamina(st), distance(dist), price(pr), type(tp)
+/*
+ * assignment constructor
+ */
+Wizard::Wizard(double pwr = 700, double st = 200, double dist = 1000, double pr = 50, string tp = "") : power(pwr), stamina(st), distance(dist), price(pr), type(tp)
 {}
 
 
-void wizard::output(StreamTable& table)
+/*
+ * ooutput warrior data in the table
+ */
+void Wizard::output(StreamTable& table)
 {
 	table << "wizard" << power << stamina << distance << price << type;
 }
 
 
-void wizard::genRandomValues(bool flag)
+/*
+ * generation of random warrior values
+ *
+ * @param flag flag for identification of warrior type.
+ */
+void Wizard::genRandomValues(bool flag)
 {
 	if (flag)
 	{
@@ -103,23 +135,23 @@ void wizard::genRandomValues(bool flag)
  * @param count count of warriors.
  * @return arr_for_warriors_types.
  */
-size_t* guild::countAllWarriorsTypes(size_t* arr_of_types, size_t* arr_for_warriors_types, size_t count)
+size_t* Guild::countAllWarriorsTypes(size_t* arr_of_types, size_t* arr_for_warriors_types, size_t count)
 {
 	for (size_t i = 0; i < count; i++)
 	{
 		switch (arr_of_types[i])
 		{
-		case warriors::SWORDSMAN:
+		case Warriors::SWORDSMAN:
 		{
 			arr_for_warriors_types[0] += 1;
 			break;
 		}
-		case warriors::ARCHER:
+		case Warriors::ARCHER:
 		{
 			arr_for_warriors_types[1] += 1;
 			break;
 		}
-		case warriors::WIZARD:
+		case Warriors::WIZARD:
 		{
 			arr_for_warriors_types[2] += 1;
 			break;
@@ -137,7 +169,7 @@ size_t* guild::countAllWarriorsTypes(size_t* arr_of_types, size_t* arr_for_warri
  * @param arr_of_types array of mercenary types
  * @param table table for careful output
  */
-void outputData(mercenary* mercenaries, size_t* arr_of_types, StreamTable& table)
+void outputData(Mercenary* mercenaries, size_t* arr_of_types, StreamTable& table)
 {
 	for (size_t i = 0; i < COUNT_OF_COLUMNS; ++i)
 		table.AddCol(17);
@@ -148,19 +180,19 @@ void outputData(mercenary* mercenaries, size_t* arr_of_types, StreamTable& table
 	{
 		switch (arr_of_types[i])
 		{
-		case warriors::SWORDSMAN:
+		case Warriors::SWORDSMAN:
 		{
-			((swordsman*)mercenaries[i].warrior)->output(table);
+			((Swordsman*)mercenaries[i].warrior)->output(table);
 			break;
 		}
-		case warriors::ARCHER:
+		case Warriors::ARCHER:
 		{
-			((archer*)mercenaries[i].warrior)->output(table);
+			((Archer*)mercenaries[i].warrior)->output(table);
 			break;
 		}
-		case::warriors::WIZARD:
+		case::Warriors::WIZARD:
 		{
-			((wizard*)mercenaries[i].warrior)->output(table);
+			((Wizard*)mercenaries[i].warrior)->output(table);
 			break;
 		}
 		}
@@ -204,18 +236,18 @@ size_t* get_warrior_arr(size_t* arr_of_types)
  * @param table table for careful output.
  * @return array of mercenaries and array of them types.
  */
-values guild::getMercenaries(StreamTable& table)
+values Guild::getMercenaries(StreamTable& table)
 {
 	size_t arr_of_types_[COUNT];
 	size_t* arr_of_types = get_warrior_arr(arr_of_types_);
 	size_t arr_for_warriors_types[WARRIOR_TYPE_COUNT] = { 0 };
-	mercenaries = new mercenary[COUNT];
+	mercenaries = new Mercenary[COUNT];
 
 	size_t* arr_for_warriors_types_ = countAllWarriorsTypes(arr_of_types, arr_for_warriors_types, COUNT);
 
-	swordsman* swordsman_arr = new swordsman[arr_for_warriors_types_[0]];
-	archer* archer_arr = new archer[arr_for_warriors_types_[1]];
-	wizard* wizard_arr = new wizard[arr_for_warriors_types_[2]];
+	Swordsman* swordsman_arr = new Swordsman[arr_for_warriors_types_[0]];
+	Archer* archer_arr = new Archer[arr_for_warriors_types_[1]];
+	Wizard* wizard_arr = new Wizard[arr_for_warriors_types_[2]];
 
 	bool counter_sw[2] = { 0 };
 	bool counter_arch[2] = { 0 };
@@ -228,7 +260,7 @@ values guild::getMercenaries(StreamTable& table)
 
 		switch (arr_of_types[i])
 		{
-		case warriors::SWORDSMAN:
+		case Warriors::SWORDSMAN:
 		{
 			if (!counter_sw[0])
 			{
@@ -248,7 +280,7 @@ values guild::getMercenaries(StreamTable& table)
 			mercenaries[i].type = "swordsman";
 			break;
 		}
-		case warriors::ARCHER:
+		case Warriors::ARCHER:
 		{
 			if (!counter_arch[0])
 			{
@@ -268,7 +300,7 @@ values guild::getMercenaries(StreamTable& table)
 			mercenaries[i].type = "archer";
 			break;
 		}
-		case warriors::WIZARD:
+		case Warriors::WIZARD:
 		{
 			if (!counter_wzrd[0])
 			{
@@ -306,8 +338,8 @@ int main(void)
 	setlocale(LC_ALL, "Russian");
     StreamTable table(cout, '-', '|');
 	srand(time(0));
-	guild g;
-	vector<mercenary*> guild_mercenaries;
+	Guild g;
+	vector<Mercenary*> guild_mercenaries;
 	values arr = g.getMercenaries(table);
 	guild_mercenaries.push_back(arr.first);
 	

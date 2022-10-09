@@ -5,7 +5,7 @@ constexpr size_t COUNT = 11;
 constexpr size_t COUNT_OF_COLUMNS = 6;
 using namespace std;
 
-enum warriors
+enum Warriors
 {
 	SWORDSMAN,
 	ARCHER,
@@ -13,7 +13,7 @@ enum warriors
 };
 
 
-class swordsman
+class Swordsman
 {
 private:
 	double power;
@@ -21,16 +21,14 @@ private:
 	double distance;
 	double price;
 	string type;
-
 public:
-	swordsman(double pwr, double st, double dist, double pr, string tp);
-
+	Swordsman(double pwr, double st, double dist, double pr, string tp);
 	void genRandomValues(bool flag);
 	void output(StreamTable& table);
 };
 
 
-class archer
+class Archer
 {
 private:
 	double power;
@@ -38,16 +36,14 @@ private:
 	double distance;
 	double price;
 	string type;
-
 public:
-	archer(double pwr, double st, double dist, double pr, string tp);
-
+	Archer(double pwr, double st, double dist, double pr, string tp);
 	void genRandomValues(bool flag);
 	void output(StreamTable& table);
 };
 
 
-class wizard
+class Wizard
 {
 private:
 	double power;
@@ -55,16 +51,14 @@ private:
 	double distance;
 	double price;
 	string type;
-
 public:
-	wizard(double pwr, double st, double dist, double pr, string tp);
-
+	Wizard(double pwr, double st, double dist, double pr, string tp);
 	void genRandomValues(bool flag);
 	void output(StreamTable& table);
 };
 
 
-class mercenary
+class Mercenary
 {
 public:
 	void* warrior;
@@ -72,18 +66,15 @@ public:
 };
 
 
-using values = std::pair<mercenary*, size_t*>;
+using values = std::pair<Mercenary*, size_t*>;
 
 
-class guild
+class Guild
 {
 private:
-	mercenary* mercenaries;
-
+	Mercenary* mercenaries;
 public:
 	size_t* countAllWarriorsTypes(size_t* arr_of_types, size_t* arr_for_warriors_types, size_t count);
-
-
     values getMercenaries(StreamTable& table);
 };
 
