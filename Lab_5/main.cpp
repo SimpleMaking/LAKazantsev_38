@@ -10,27 +10,27 @@ SparePart::SparePart(int flag)
 	if (flag == Parts::shaft)
 	{
 		replacement_cost = 100;
-		one_time_repair_cost = 100;
+		one_time_repair_cost = 90;
 		time_for_repair = 1;
-		life_time = 5;
+		life_time = 3 + rand() % 3;
 		wear_degree = 1 + rand() % 4;
 		wear_degree_arr[0] = wear_degree;
 	}
 	else if (flag == Parts::electricEngine)
 	{
-		replacement_cost = 200;
-		one_time_repair_cost = 100;
+		replacement_cost = 215;
+		one_time_repair_cost = 105;
 		time_for_repair = 2;
-		life_time = 10;
+		life_time = 8 + rand() % 3;
 		wear_degree = 1 + rand() % 4;
 		wear_degree_arr[1] = wear_degree;
 	}
 	else if (flag == Parts::controlPanel)
 	{
-		replacement_cost = 100;
-		one_time_repair_cost = 200;
+		replacement_cost = 305;
+		one_time_repair_cost = 94;
 		time_for_repair = 3;
-		life_time = 7;
+		life_time = 5 + rand() % 3;
 		wear_degree = 1 + rand() % 4;
 		wear_degree_arr[2] = wear_degree;
 	}
@@ -39,7 +39,7 @@ SparePart::SparePart(int flag)
 		replacement_cost = 50;
 		one_time_repair_cost = 40;
 		time_for_repair = 1;
-		life_time = 12;
+		life_time = 10 + rand() % 3;
 		wear_degree = 1 + rand() % 4;
 		wear_degree_arr[3] = wear_degree;
 	}
@@ -94,7 +94,7 @@ void SparePart::working(short intensity_of_use) // 1 2 or 3 can take value
  */
 int Shaft::definitionProblem(int counter)
 {
-	if (wear_degree > 7)
+	if (wear_degree > 6.4)
 		return 1;  // part broken
 	else if (counter > life_time)
 		return 2; //need a replacement
@@ -114,17 +114,17 @@ int Shaft::working(short intensity_of_use, int counter)
 	if (intensity_of_use == 1)
 	{
 		counter += 1;
-		wear_degree += 0.2;
+		wear_degree = rand() % 8;
 	}
 	else if (intensity_of_use == 2)
 	{
 		counter += 2;
-		wear_degree += 0.4;
+		wear_degree = rand() % 9;
 	}
 	else
 	{
 		counter += 3;
-		wear_degree += 0.6;
+		wear_degree = rand() % 10;
 	}
 	return counter;
 }
@@ -137,7 +137,7 @@ int Shaft::working(short intensity_of_use, int counter)
  */
 int ElectricEngine::definitionProblem(int counter)
 {
-	if (wear_degree > 8)
+	if (wear_degree > 7.1)
 		return 1;  // part broken
 	else if (counter > life_time)
 		return 2; //need a replacement
@@ -157,17 +157,17 @@ int ElectricEngine::working(short intensity_of_use, int counter)
 	if (intensity_of_use == 1)
 	{
 		counter += 1;
-		wear_degree += 0.1;
+		wear_degree = rand() % 11;
 	}
 	else if (intensity_of_use == 2)
 	{
 		counter += 2;
-		wear_degree += 0.3;
+		wear_degree = rand() % 12;
 	}
 	else
 	{
 		counter += 3;
-		wear_degree += 0.5;
+		wear_degree = rand() % 13;
 	}
 	return counter;
 }
@@ -180,7 +180,7 @@ int ElectricEngine::working(short intensity_of_use, int counter)
  */
 int ControlPanel::definitionProblem(int counter)
 {
-	if (wear_degree > 7.5)
+	if (wear_degree > 6.3)
 		return 1;  // part broken
 	else if (counter > life_time)
 		return 2; //need a replacement
@@ -200,17 +200,17 @@ int ControlPanel::working(short intensity_of_use, int counter)
 	if (intensity_of_use == 1)
 	{
 		counter += 1;
-		wear_degree += 0.95;
+		wear_degree = rand() % 9;
 	}
 	else if (intensity_of_use == 2)
 	{
 		counter += 2;
-		wear_degree += 0.295;
+		wear_degree = rand() % 10;
 	}
 	else
 	{
 		counter += 3;
-		wear_degree += 0.495;
+		wear_degree += rand() % 11;
 	}
 	return counter;
 }
@@ -223,7 +223,7 @@ int ControlPanel::working(short intensity_of_use, int counter)
  */
 int CuttingHead::definitionProblem(int counter)
 {
-	if (wear_degree > 8.5)
+	if (wear_degree > 7.4)
 		return 1;  // part broken
 	else if (counter > life_time)
 		return 2; //need a replacement
@@ -243,17 +243,17 @@ int CuttingHead::working(short intensity_of_use, int counter)
 	if (intensity_of_use == 1)
 	{
 		counter += 1;
-		wear_degree += 0.2;
+		wear_degree = rand() % 10;
 	}
 	else if (intensity_of_use == 2)
 	{
 		counter += 2;
-		wear_degree += 0.43;
+		wear_degree += rand() % 11;
 	}
 	else
 	{
 		counter += 3;
-		wear_degree += 0.62;
+		wear_degree = rand() % 12;
 	}
 	return counter;
 }

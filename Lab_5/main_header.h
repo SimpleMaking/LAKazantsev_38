@@ -4,7 +4,7 @@
 #include <vector>
 #include <Windows.h>
 constexpr short COUNT_OF_PARTS = 4;
-constexpr short COUNT_OF_MACHINES = 2;
+constexpr short COUNT_OF_MACHINES = 8;
 constexpr short YEAR_CYCLE = 1;
 constexpr short WORKING_DAY = 12;
 int wear_degree_arr[COUNT_OF_PARTS];
