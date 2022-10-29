@@ -14,6 +14,9 @@ SparePart::SparePart(int flag)
 		time_for_repair = 1;
 		life_time = 3 + rand() % 3;
 		wear_degree = 1 + rand() % 4;
+		time_counter = 0;
+		type = 0;
+
 		wear_degree_arr[0] = wear_degree;
 	}
 	else if (flag == Parts::electricEngine)
@@ -23,6 +26,8 @@ SparePart::SparePart(int flag)
 		time_for_repair = 2;
 		life_time = 8 + rand() % 3;
 		wear_degree = 1 + rand() % 4;
+		time_counter = 0;
+		type = 1;
 		wear_degree_arr[1] = wear_degree;
 	}
 	else if (flag == Parts::controlPanel)
@@ -32,6 +37,8 @@ SparePart::SparePart(int flag)
 		time_for_repair = 3;
 		life_time = 5 + rand() % 3;
 		wear_degree = 1 + rand() % 4;
+		time_counter = 0;
+		type = 2;
 		wear_degree_arr[2] = wear_degree;
 	}
 	else if(flag == Parts::cuttingHead)
@@ -41,6 +48,8 @@ SparePart::SparePart(int flag)
 		time_for_repair = 1;
 		life_time = 10 + rand() % 3;
 		wear_degree = 1 + rand() % 4;
+		time_counter = 0;
+		type = 3;
 		wear_degree_arr[3] = wear_degree;
 	}
 }
@@ -92,11 +101,11 @@ void SparePart::working(short intensity_of_use) // 1 2 or 3 can take value
  * @param counter counter of life time
  * return 1 - part broken, 2 - part need a replacement, 0 - part is ready to work farther
  */
-int Shaft::definitionProblem(int counter)
+int Shaft::definitionProblem()
 {
 	if (wear_degree > 6.4)
 		return 1;  // part broken
-	else if (counter > life_time)
+	else if (time_counter > life_time)
 		return 2; //need a replacement
 	else
 		return 0;  // part ready to work farther
@@ -109,24 +118,23 @@ int Shaft::definitionProblem(int counter)
  * @param counter counter of life time
  * return counter of life time
  */
-int Shaft::working(short intensity_of_use, int counter)
+void Shaft::working(short intensity_of_use)
 {
 	if (intensity_of_use == 1)
 	{
-		counter += 1;
-		wear_degree = rand() % 8;
+		time_counter += 3;
+		wear_degree = rand() % 6;
 	}
 	else if (intensity_of_use == 2)
 	{
-		counter += 2;
-		wear_degree = rand() % 9;
+		time_counter += 4;
+		wear_degree = rand() % 7;
 	}
 	else
 	{
-		counter += 3;
-		wear_degree = rand() % 10;
+		time_counter += 5;
+		wear_degree = rand() % 8;
 	}
-	return counter;
 }
 
 /*
@@ -135,11 +143,11 @@ int Shaft::working(short intensity_of_use, int counter)
  * @param counter counter of life time
  * return 1 - part broken, 2 - part need a replacement, 0 - part is ready to work farther
  */
-int ElectricEngine::definitionProblem(int counter)
+int ElectricEngine::definitionProblem()
 {
 	if (wear_degree > 7.1)
 		return 1;  // part broken
-	else if (counter > life_time)
+	else if (time_counter > life_time)
 		return 2; //need a replacement
 	else
 		return 0;  // part ready to work farther
@@ -152,24 +160,23 @@ int ElectricEngine::definitionProblem(int counter)
  * @param counter counter of life time
  * return counter of life time
  */
-int ElectricEngine::working(short intensity_of_use, int counter)
+void ElectricEngine::working(short intensity_of_use)
 {
 	if (intensity_of_use == 1)
 	{
-		counter += 1;
-		wear_degree = rand() % 11;
+		time_counter += 3;
+		wear_degree = rand() % 9;
 	}
 	else if (intensity_of_use == 2)
 	{
-		counter += 2;
-		wear_degree = rand() % 12;
+		time_counter += 4;
+		wear_degree = rand() % 10;
 	}
 	else
 	{
-		counter += 3;
-		wear_degree = rand() % 13;
+		time_counter += 5;
+		wear_degree = rand() % 11;
 	}
-	return counter;
 }
 
 /*
@@ -178,11 +185,11 @@ int ElectricEngine::working(short intensity_of_use, int counter)
  * @param counter counter of life time
  * return 1 - part broken, 2 - part need a replacement, 0 - part is ready to work farther
  */
-int ControlPanel::definitionProblem(int counter)
+int ControlPanel::definitionProblem()
 {
 	if (wear_degree > 6.3)
 		return 1;  // part broken
-	else if (counter > life_time)
+	else if (time_counter > life_time)
 		return 2; //need a replacement
 	else
 		return 0;  // part ready to work farther
@@ -195,24 +202,23 @@ int ControlPanel::definitionProblem(int counter)
  * @param counter counter of life time
  * return counter of life time
  */
-int ControlPanel::working(short intensity_of_use, int counter)
+void ControlPanel::working(short intensity_of_use)
 {
 	if (intensity_of_use == 1)
 	{
-		counter += 1;
-		wear_degree = rand() % 9;
+		time_counter += 3;
+		wear_degree = rand() % 7;
 	}
 	else if (intensity_of_use == 2)
 	{
-		counter += 2;
-		wear_degree = rand() % 10;
+		time_counter += 4;
+		wear_degree = rand() % 8;
 	}
 	else
 	{
-		counter += 3;
-		wear_degree += rand() % 11;
+		time_counter += 5;
+		wear_degree += rand() % 9;
 	}
-	return counter;
 }
 
 /*
@@ -221,11 +227,11 @@ int ControlPanel::working(short intensity_of_use, int counter)
  *@param counter counter of life time
  * return 1 - part broken, 2 - part need a replacement, 0 - part is ready to work farther
  */
-int CuttingHead::definitionProblem(int counter)
+int CuttingHead::definitionProblem()
 {
 	if (wear_degree > 7.4)
 		return 1;  // part broken
-	else if (counter > life_time)
+	else if (time_counter > life_time)
 		return 2; //need a replacement
 	else
 		return 0;  // part ready to work farther
@@ -238,24 +244,23 @@ int CuttingHead::definitionProblem(int counter)
  * @param counter counter of life time
  * return counter of life time 
  */
-int CuttingHead::working(short intensity_of_use, int counter)
+void CuttingHead::working(short intensity_of_use)
 {
 	if (intensity_of_use == 1)
 	{
-		counter += 1;
-		wear_degree = rand() % 10;
+		time_counter += 3;
+		wear_degree = rand() % 8;
 	}
 	else if (intensity_of_use == 2)
 	{
-		counter += 2;
-		wear_degree += rand() % 11;
+		time_counter += 4;
+		wear_degree += rand() % 9;
 	}
 	else
 	{
-		counter += 3;
-		wear_degree = rand() % 12;
+		time_counter += 5;
+		wear_degree = rand() % 10;
 	}
-	return counter;
 }
 
 /*
@@ -264,10 +269,34 @@ int CuttingHead::working(short intensity_of_use, int counter)
  */
 Machine::Machine()
 {
-	shaft_value = Shaft(0);
-	engine_value = ElectricEngine(1);
-	control_panel_value = ControlPanel(2);
-	cutting_head_value = CuttingHead(3);
+	int rand_value;
+	for (size_t i = 0; i < COUNT_OF_PARTS; ++i)
+	{
+		rand_value = rand() % COUNT_OF_TYPES;
+		switch (rand_value)
+		{
+		case Parts::shaft:
+		{
+			part_set.push_back(Shaft(0));
+			break;
+		}
+		case Parts::electricEngine:
+		{
+			part_set.push_back(ElectricEngine(1));
+			break;
+		}
+		case Parts::controlPanel:
+		{
+			part_set.push_back(ControlPanel(2));
+			break;
+		}
+		case Parts::cuttingHead:
+		{
+			part_set.push_back(CuttingHead(3));
+			break;
+		}
+		}
+	}
 }
 
 /*
@@ -279,108 +308,82 @@ Machine::Machine()
 void Machine::machineWorking(short working_time, short intensity_of_use)
 {	
 	double start_time = clock();
-	int counter_arr[COUNT_OF_PARTS] = { 0 };
 	double end_time, difference = 0;
 	int value;
 	std::cout << "Machine is working /////...............\n";
 	while (difference <= working_time)
 	{
-		counter_arr[3] = cutting_head_value.working(intensity_of_use, counter_arr[3]);
-		if (value = shaft_value.definitionProblem(counter_arr[0]))
+		for (size_t i = 0; i < COUNT_OF_PARTS; ++i)
 		{
-			if (value == 1)
+			part_set[i].working(intensity_of_use);
+			if (value = part_set[i].definitionProblem())
 			{
-				std::cout << "part being repaired /////..................... shaft  ";
-				std::cout << "time of repair: " << shaft_value.time_for_repair << "\n";
-				shaft_value.wear_degree = wear_degree_arr[0];
-				working_time -= shaft_value.time_for_repair;
-				Sleep(shaft_value.time_for_repair * 1000);
-				std::cout << "Machine is working again/////...............\n";
+				if (value == 1)
+				{
+					if (part_set[i].type == 0)
+						std::cout << "part being repaired /////..................... shaft  ";
+					else if (part_set[i].type == 1)
+						std::cout << "part being repaired /////..................... electric engine  ";
+					else if (part_set[i].type == 2)
+						std::cout << "part being repaired /////..................... control panel  ";
+					else
+						std::cout << "part being repaired /////..................... cutting head  ";
+
+					std::cout << "time of repair: " << part_set[i].time_for_repair << "\n";
+					part_set[i].wear_degree = wear_degree_arr[0];
+					working_time -= part_set[i].time_for_repair;
+					Sleep(part_set[i].time_for_repair * 1000);
+					std::cout << "Machine is working again/////...............\n";
+				}
+				else if (value == 2)
+				{
+					if (part_set[i].type == 0)
+						std::cout << "part is replacing /////..................... shaft  ";
+					else if (part_set[i].type == 1)
+						std::cout << "part is replacing /////..................... electric engine  ";
+					else if (part_set[i].type == 2)
+						std::cout << "part is replacing /////..................... control panel  ";
+					else
+						std::cout << "part is replacing /////..................... cutting head  ";
+
+					std::cout << "time of replace: " << 4 << "\n";
+					part_set[i].life_time = life_time_arr[0];
+					working_time -= 4;
+					part_set[i].time_counter = 0;
+					part_set.erase((part_set.end() - 1) - (part_set.size() - 1 - i));
+					switch (part_set[i].type)
+					{
+					case Parts::shaft:
+					{
+						part_set.push_back(Shaft(0));
+						break;
+					}
+					case Parts::electricEngine:
+					{
+						part_set.push_back(ElectricEngine(1));
+						break;
+					}
+					case Parts::controlPanel:
+					{
+						part_set.push_back(ControlPanel(2));
+						break;
+					}
+					case Parts::cuttingHead:
+					{
+						part_set.push_back(CuttingHead(3));
+						break;
+					}
+					}
+					Sleep(4000);
+					std::cout << "Machine is working again/////...............\n";
+				}
 			}
-			else if (value == 2)
-			{
-				std::cout << "part is replacing /////..................... shaft  ";
-				std::cout << "time of replace: " << 4 << "\n";
-				shaft_value.life_time =life_time_arr[0];
-				working_time -= 4;
-				Sleep(4000);
-				std::cout << "Machine is working again/////...............\n";
-			}
-			
-			//start_time += shaft_value->time_for_repair * 1000;
 		}
-		if (value = engine_value.definitionProblem(counter_arr[1]))
-		{
-			if (value == 1)
-			{
-				std::cout << "part being repaired /////..................... electric engine  ";
-				std::cout << "time of repair: " << engine_value.time_for_repair << "\n";
-				engine_value.wear_degree = wear_degree_arr[1];
-				working_time -= engine_value.time_for_repair;
-				Sleep(engine_value.time_for_repair * 1000);
-				std::cout << "Machine is working again/////...............\n";
-			}
-			else if (value == 2)
-			{
-				std::cout << "part is replacing /////..................... electric engine  ";
-				std::cout << "time of replace: " << 4 << "\n";
-				engine_value.life_time = life_time_arr[1];
-				working_time -= 4;
-				Sleep(4000);
-				std::cout << "Machine is working again/////...............\n";
-			}
-			//start_time += engine_value->time_for_repair * 1000;
-		}
-		counter_arr[2] = control_panel_value.working(intensity_of_use, counter_arr[2]);
-		if (value = control_panel_value.definitionProblem(counter_arr[2]))
-		{
-			if (value == 1)
-			{
-				std::cout << "part being repaired /////..................... control panel  ";
-				std::cout << "time of repair: " << control_panel_value.time_for_repair << "\n";
-				control_panel_value.wear_degree = wear_degree_arr[2];
-				working_time -= control_panel_value.time_for_repair;
-				Sleep(control_panel_value.time_for_repair * 1000);
-				std::cout << "Machine is working again/////...............\n";
-			}
-			else if (value == 2)
-			{
-				std::cout << "part is replacing /////..................... control panel  ";
-				std::cout << "time of replace: " << 4 << "\n";
-				control_panel_value.life_time = life_time_arr[2];
-				working_time -= 4;
-				Sleep(4000);
-				std::cout << "Machine is working again/////...............\n";
-			}
-			//start_time += control_panel_value->time_for_repair * 1000;
-		}
-		counter_arr[1] = engine_value.working(intensity_of_use, counter_arr[1]);
-		if (value = cutting_head_value.definitionProblem(counter_arr[3]))
-		{
-			if (value == 1)
-			{
-				std::cout << "part being repaired /////..................... cutting head  ";
-				std::cout << "time of repair: " << cutting_head_value.time_for_repair << "\n";
-				cutting_head_value.wear_degree = wear_degree_arr[3];
-				working_time -= cutting_head_value.time_for_repair;
-				Sleep(cutting_head_value.time_for_repair * 1000);
-				std::cout << "Machine is working again/////...............\n";
-			}
-			else if (value == 2)
-			{
-				std::cout << "part is replacing /////..................... cutting head  ";
-				std::cout << "time of replace: " << 4 << "\n";
-				cutting_head_value.life_time = life_time_arr[3];
-				working_time -= 4;
-				Sleep(4000);
-				std::cout << "Machine is working again/////...............\n";
-			}
-			//start_time += cutting_head_value->time_for_repair * 1000;
-		}
-		counter_arr[0] = shaft_value.working(intensity_of_use, counter_arr[0]);
 		end_time = clock();
 		difference = (end_time - start_time) / CLOCKS_PER_SEC;
 	}
+		
+	part_set.clear();
 }
 
 /*
@@ -392,111 +395,67 @@ void Machine::machineWorking(short working_time, short intensity_of_use)
  */
 void Machine::workSimulation(short working_time, short intensity_of_use, int* statistic_arr)
 {
+
 	double start_time = clock();
-	int counter_arr[COUNT_OF_PARTS] = { 0 };
 	double end_time, difference = 0;
 	int value;
-	//std::cout << "Machine is working /////...............\n";
 	while (difference <= working_time)
 	{
-		counter_arr[3] = cutting_head_value.working(intensity_of_use, counter_arr[3]);
-		if (value = shaft_value.definitionProblem(counter_arr[0]))
+		for (size_t i = 0; i < COUNT_OF_PARTS; ++i)
 		{
-			statistic_arr[2] += 1;
-			if (value == 1)
+			part_set[i].working(intensity_of_use);
+			if (value = part_set[i].definitionProblem())
 			{
-				shaft_value.wear_degree = wear_degree_arr[0];
-				statistic_arr[0] += shaft_value.one_time_repair_cost;
-				statistic_arr[3] += shaft_value.time_for_repair;
-				working_time -= shaft_value.time_for_repair;
-				Sleep(shaft_value.time_for_repair * 1000);
+				statistic_arr[2] += 1;
+				if (value == 1)
+				{
+					part_set[i].wear_degree = wear_degree_arr[0];
+					statistic_arr[0] += part_set[i].one_time_repair_cost;
+					statistic_arr[3] += part_set[i].time_for_repair;
+					working_time -= part_set[i].time_for_repair;
+					Sleep(part_set[i].time_for_repair * 1000);
+				}
+				else if (value == 2)
+				{
+					part_set[i].life_time = life_time_arr[0];
+					statistic_arr[0] += part_set[i].replacement_cost;
+					statistic_arr[1] += 1;
+					statistic_arr[3] += 4;
+					working_time -= 4;
+					part_set[i].time_counter = 0;
+					part_set.erase((part_set.end() - 1) - (part_set.size() - 1 - i));
+					switch (part_set[i].type)
+					{
+					case Parts::shaft:
+					{
+						part_set.push_back(Shaft(0));
+						break;
+					}
+					case Parts::electricEngine:
+					{
+						part_set.push_back(ElectricEngine(1));
+						break;
+					}
+					case Parts::controlPanel:
+					{
+						part_set.push_back(ControlPanel(2));
+						break;
+					}
+					case Parts::cuttingHead:
+					{
+						part_set.push_back(CuttingHead(3));
+						break;
+					}
+					}
+					Sleep(4000);
+				}
 			}
-			else if (value == 2)
-			{
-				shaft_value.life_time = life_time_arr[0];
-				statistic_arr[0] += shaft_value.replacement_cost;
-				statistic_arr[1] += 1;
-				statistic_arr[3] += 4;
-				working_time -= 4;
-				Sleep(4000);
-			}
-
-			//start_time += shaft_value->time_for_repair * 1000;
 		}
-		if (value = engine_value.definitionProblem(counter_arr[1]))
-		{
-			statistic_arr[2] += 1;
-			if (value == 1)
-			{
-				
-				engine_value.wear_degree = wear_degree_arr[1];
-				statistic_arr[0] += engine_value.one_time_repair_cost;
-				statistic_arr[3] += engine_value.time_for_repair;
-				working_time -= engine_value.time_for_repair;
-				Sleep(engine_value.time_for_repair * 1000);
-			
-			}
-			else if (value == 2)
-			{
-				engine_value.life_time = life_time_arr[1];
-				statistic_arr[0] += engine_value.replacement_cost;
-				statistic_arr[1] += 1;
-				statistic_arr[3] += 4;
-				working_time -= 4;
-				Sleep(4000);
-			}
-			//start_time += engine_value->time_for_repair * 1000;
-		}
-		counter_arr[2] = control_panel_value.working(intensity_of_use, counter_arr[2]);
-		if (value = control_panel_value.definitionProblem(counter_arr[2]))
-		{
-			statistic_arr[2] += 1;
-			if (value == 1)
-			{
-				control_panel_value.wear_degree = wear_degree_arr[2];
-				statistic_arr[0] += control_panel_value.one_time_repair_cost;
-				statistic_arr[3] += control_panel_value.time_for_repair;
-				working_time -= control_panel_value.time_for_repair;
-				Sleep(control_panel_value.time_for_repair * 1000);
-			}
-			else if (value == 2)
-			{
-				control_panel_value.life_time = life_time_arr[2];
-				statistic_arr[0] += control_panel_value.replacement_cost;
-				statistic_arr[1] += 1;
-				statistic_arr[3] += 4;
-				working_time -= 4;
-				Sleep(4000);
-			}
-			//start_time += control_panel_value->time_for_repair * 1000;
-		}
-		counter_arr[1] = engine_value.working(intensity_of_use, counter_arr[1]);
-		if (value = cutting_head_value.definitionProblem(counter_arr[3]))
-		{
-			statistic_arr[2] += 1;
-			if (value == 1)
-			{
-				cutting_head_value.wear_degree = wear_degree_arr[3];
-				statistic_arr[0] += cutting_head_value.one_time_repair_cost;
-				statistic_arr[3] += cutting_head_value.time_for_repair;
-				working_time -= cutting_head_value.time_for_repair;
-				Sleep(cutting_head_value.time_for_repair * 1000);
-			}
-			else if (value == 2)
-			{
-				cutting_head_value.life_time = life_time_arr[3];
-				statistic_arr[0] += cutting_head_value.replacement_cost;
-				statistic_arr[1] += 1;
-				statistic_arr[3] += 4;
-				working_time -= 4;
-				Sleep(4000);
-			}
-			//start_time += cutting_head_value->time_for_repair * 1000;
-		}
-		counter_arr[0] = shaft_value.working(intensity_of_use, counter_arr[0]);
 		end_time = clock();
 		difference = (end_time - start_time) / CLOCKS_PER_SEC;
 	}
+
+	//part_set.clear();
 }
 
 /*
@@ -572,10 +531,9 @@ int main()
 			max = statistics[i][3];
 	std::cout << "max downtime from all machines: " << max << "h." << std::endl << std::endl;
 
-	//machine.machineWorking(3, 3);
 	for (size_t i = 0; i < COUNT_OF_MACHINES; ++i)
 		delete[]statistics[i];
 	delete[]statistics;
-
+	//machine.machineWorking(24, 3);
 	return 0;
 }
