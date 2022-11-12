@@ -32,16 +32,30 @@ public:
 	int getLength();
 	bool checkEmptyListOrNo();
 	class Iterator;
+	/*
+	* returning begin iterator
+	*
+	* @return begin iterator.
+	*/
 	Iterator begin()
 	{
 		return Iterator(head);
 	}
-
+	/*
+	* returning end iterator
+	*
+	* @return end iterator.
+	*/
 	Iterator end()
 	{
 		return Iterator(tail->next_elem);
 	}
-
+	/*
+	* getting elem data via index
+	*
+	* @param index elem index.
+	* @return elem data.
+	*/
 	T getElemData(int index)
 	{
 		Node<T>* pointer = head;
@@ -55,12 +69,22 @@ public:
 		}
 		return pointer->data;
 	}
-
+	/*
+	* getting elem data via pointer
+	*
+	* @param pointer node pointer.
+	* @return elem data.
+	*/
 	static T& getElemDataViaPointer(Node<T>* pointer)
 	{
 		return pointer->data;
 	}
-
+	/*
+	* overloading [] operator
+	*
+	* @param index elem index.
+	* @return elem data link.
+	*/
 	T& operator[](int index)
 	{
 		return getElemData(index);
@@ -73,17 +97,31 @@ public:
 	
 	public:
 		Iterator(Node<T>* pointer) : pointer(pointer) {}
+		/*
+		* overloading ++ operator
+		*
+		* @return iterator link.
+		*/
 		Iterator& operator++()
 		{
 			pointer = pointer->next_elem;
 			return *this;
 		}
-
+		/*
+		* overloading * operator
+		*
+		* @return data link.
+		*/
 		T& operator*()
 		{
 			return  getElemDataViaPointer(pointer);
 		}
-
+		/*
+		* overloading != operator
+		*
+		* @param it iterator link. 
+		* @return flag of completing.
+		*/
 		bool operator!=(Iterator& it)
 		{
 			return it.pointer != pointer;
