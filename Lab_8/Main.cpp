@@ -1,6 +1,10 @@
 #include "Main_Header.h"
 
-
+/*
+ * class Node constructor 
+ *
+ * @param data data of list.
+ */
 template<typename T>
 Node<T>::Node(T data)
 {
@@ -9,6 +13,10 @@ Node<T>::Node(T data)
 }
 
 
+/*
+ * class DoubleLinkedList constructor
+ *
+ */
 template<typename T>
 DoubleLinkedList<T>::DoubleLinkedList()
 {
@@ -17,6 +25,10 @@ DoubleLinkedList<T>::DoubleLinkedList()
 }
 
 
+/*
+ * class DoubleLinkedList destructor
+ *
+ */
 template <typename T>
 DoubleLinkedList<T>::~DoubleLinkedList()
 {
@@ -25,6 +37,12 @@ DoubleLinkedList<T>::~DoubleLinkedList()
 }
 
 
+/*
+ * pushing list node in front
+ *
+ * @param data data of list.
+ * @return flag of completing.
+ */
 template<typename T>
 bool DoubleLinkedList<T>::push_front(T data)
 {
@@ -47,6 +65,12 @@ bool DoubleLinkedList<T>::push_front(T data)
 }
 
 
+/*
+ * pushing list node in back
+ *
+ * @param data data of list.
+ * @return flag of completing.
+ */
 template<typename T>
 bool DoubleLinkedList<T>::push_back(T data)
 {
@@ -69,6 +93,10 @@ bool DoubleLinkedList<T>::push_back(T data)
 }
 
 
+/*
+ * deleting list node from front
+ *
+ */
 template <typename T>
 void DoubleLinkedList<T>::pop_front()
 {
@@ -88,6 +116,10 @@ void DoubleLinkedList<T>::pop_front()
 }
 
 
+/*
+ * deleting list node from back
+ *
+ */
 template<typename T>
 void DoubleLinkedList<T>::pop_back()
 {
@@ -107,6 +139,11 @@ void DoubleLinkedList<T>::pop_back()
 }
 
 
+/*
+ * getting list node from front
+ *
+ * @return head node data.
+ */
 template<typename T>
 T DoubleLinkedList<T>::getFrontElem()
 {
@@ -114,6 +151,11 @@ T DoubleLinkedList<T>::getFrontElem()
 }
 
 
+/*
+ * getting list node from back
+ *
+ * @return tail node data.
+ */
 template<typename T>
 T DoubleLinkedList<T>::getBackElem()
 {
@@ -121,6 +163,11 @@ T DoubleLinkedList<T>::getBackElem()
 }
 
 
+/*
+ * getting list length
+ *
+ * @return list length.
+ */
 template<typename T>
 int DoubleLinkedList<T>::getLength()
 {
@@ -128,6 +175,11 @@ int DoubleLinkedList<T>::getLength()
 }
 
 
+/*
+ * checking empty list or no
+ *
+ * @return flag of completing.
+ */
 template<typename T>
 bool DoubleLinkedList<T>::checkEmptyListOrNo()
 {
@@ -138,6 +190,11 @@ bool DoubleLinkedList<T>::checkEmptyListOrNo()
 }
 
 
+/*
+ * main function - checking all functions 
+ *
+ * @return flag of completing.
+ */
 int main(void)
 {
 	DoubleLinkedList<int> list, list_;
