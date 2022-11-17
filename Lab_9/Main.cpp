@@ -1,6 +1,10 @@
 #include "Main_Header.h"
 
-
+/*
+ * class NumberDivisors constructor
+ *
+ * @param number number for that we should find all divisors.
+ */
 NumberDivisors::NumberDivisors(int number) : number(number)
 {
 	for (size_t i = 1; i <= number; ++i)
@@ -13,6 +17,12 @@ NumberDivisors::NumberDivisors(int number) : number(number)
 }
 
 
+/*
+ * checking divisor_list have or no entered divisor
+ *
+ * @param number entered divisor.
+ * @return checking flag.
+ */
 bool NumberDivisors::divCounter(size_t number)
 {
 	int count_of_elems = count_if(divisor_list.begin(), divisor_list.end(), [number](int vector_div) {return number == vector_div;});
@@ -20,6 +30,11 @@ bool NumberDivisors::divCounter(size_t number)
 }
 
 
+/*
+ * getting average value of number divisors
+ *
+ * @return average value.
+ */
 double NumberDivisors::averageValue()
 {
 	size_t sum = std::accumulate(divisor_list.begin(), divisor_list.end(), 0);
@@ -27,6 +42,11 @@ double NumberDivisors::averageValue()
 }
 
 
+/*
+ * object copy
+ *
+ * @param obj object to be copied.
+ */
 void NumberDivisors::copy(NumberDivisors& obj)
 {
 	obj.divisor_list = this->divisor_list;
@@ -34,6 +54,10 @@ void NumberDivisors::copy(NumberDivisors& obj)
 }
 
 
+/*
+ * the main function - checking all app functions 
+ *
+ */
 int main(void)
 {
 	srand(time(0));

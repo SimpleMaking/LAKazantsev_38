@@ -29,6 +29,13 @@ public:
 };
 
 
+/*
+ * overload << operator for output via std::copy
+ *
+ * @param out output object.
+ * @param obj obj that will be rendered.
+ * @return output object link.
+ */
 ostream& operator<<(ostream& out, NumberDivisors const& obj)
 {
 	out << obj.number << "\n";
@@ -40,6 +47,13 @@ ostream& operator<<(ostream& out, NumberDivisors const& obj)
 }
 
 
+/*
+ * search largest common divisor 
+ *
+ * @param val1 first values list.
+ * @param val2 second values list.
+ * @return largest common divisor.
+ */
 int findNOD(vector<int>& val1, vector<int>& val2)
 {
 	size_t max = 1;
@@ -54,6 +68,13 @@ int findNOD(vector<int>& val1, vector<int>& val2)
 }
 
 
+/*
+ * search largest common divisor via std::bind
+ *
+ * @param val1 first values list.
+ * @param val2 second values list.
+ * @return largest common divisor.
+ */
 int findNODWithBind(vector<int>& val1, vector<int>& val2)
 {
 	auto funcNOD = std::bind(findNOD, val1, val2);
