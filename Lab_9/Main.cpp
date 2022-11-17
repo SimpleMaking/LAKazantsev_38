@@ -8,8 +8,7 @@ NumberDivisors::NumberDivisors(int number) : number(number)
 		if (number % i == 0)
 		{
 			divisor_list.push_back(i);
-		}
-		
+		}	
 	}
 }
 
@@ -45,12 +44,25 @@ int main(void)
 
 	vector<double> average_list;
 	size_t count_of_nums = 0;
-
+	int n;
+	cout << "input some number\n";
+	cin >> n;
+	do
+	{
+		if (n > 0)
+			break;
+		else
+		{
+			cout << "try again input some number\n";
+			cin >> n;
+		}
+	} while (true);
+	cout << "\n";
 	for (size_t i = 0; i < N; ++i)
 	{
 		list_of_obj.push_back(NumberDivisors(1 + rand() % 15));
 		average_list.push_back(list_of_obj[i].averageValue());
-		if (list_of_obj[i].divCounter(2))
+		if (list_of_obj[i].divCounter(n))
 			count_of_nums += 1;
 	}
 	size_t counter = 0;
@@ -60,8 +72,8 @@ int main(void)
 		std::cout << value;
 		std::cout << average_list[counter++] << "\n\n";
 	}
-	std::cout << count_of_nums << "\n";
-	std::cout << findNOD(list_of_obj[0].divisor_list, list_of_obj[1].divisor_list) << "\n";
-	std::cout << findNODWithBind(list_of_obj[8].divisor_list, list_of_obj[9].divisor_list) << "\n";
+	std::cout << "count of numbers that have the entered divisor: " << count_of_nums << "\n";
+	std::cout << "largest common divisor: " << findNOD(list_of_obj[0].divisor_list, list_of_obj[1].divisor_list) << "\n";
+	std::cout << "largest common divisor: " << findNODWithBind(list_of_obj[8].divisor_list, list_of_obj[9].divisor_list) << "\n";
 	return EXIT_SUCCESS;
 }
