@@ -16,14 +16,13 @@ private:
 	//NumberDivisors(const NumberDivisors&);
 	void operator=(const NumberDivisors&);
 public:
-	mutable vector<int> divisor_list;
-	mutable int number;
+	vector<int> divisor_list;
+	int number;
 	NumberDivisors(int number);
 	NumberDivisors() : number(0) {}
 	bool divCounter(size_t number);
 	void copy(NumberDivisors&);
 	double averageValue();
-	template <typename T>
 	friend ostream& operator<<(ostream& out, NumberDivisors const& obj);
 	friend int findNOD(vector<int>&, vector<int>&);
 	friend int findNODWithBind(vector<int>&, vector<int>&);
