@@ -15,12 +15,14 @@ class NumberDivisors
 private:
 	//NumberDivisors(const NumberDivisors&);
 	void operator=(const NumberDivisors&);
-public:
 	vector<int> divisor_list;
 	int number;
+public:
 	NumberDivisors(int number);
 	NumberDivisors() : number(0) {}
 	bool divCounter(size_t number);
+	vector<int>& getDivisorList();
+	int getNumber();
 	void copy(NumberDivisors&);
 	double averageValue();
 	friend ostream& operator<<(ostream& out, NumberDivisors const& obj);

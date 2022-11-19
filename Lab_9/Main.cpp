@@ -55,6 +55,28 @@ void NumberDivisors::copy(NumberDivisors& obj)
 
 
 /*
+ * getting divisor_list
+ *
+ * @return divisor_list link.
+ */
+vector<int>& NumberDivisors::getDivisorList()
+{
+	return divisor_list;
+}
+
+
+/*
+ * getting number
+ *
+ * @return number.
+ */
+int NumberDivisors::getNumber()
+{
+	return number;
+}
+
+
+/*
  * the main function - checking all app functions 
  *
  */
@@ -97,7 +119,7 @@ int main(void)
 		std::cout << average_list[counter++] << "\n\n";
 	}
 	std::cout << "count of numbers that have the entered divisor: " << count_of_nums << "\n";
-	std::cout << "largest common divisor: " << findNOD(list_of_obj[0].divisor_list, list_of_obj[1].divisor_list) << "\n";
-	std::cout << "largest common divisor: " << findNODWithBind(list_of_obj[8].divisor_list, list_of_obj[9].divisor_list) << "\n";
+	std::cout << "largest common divisor: " << findNOD(list_of_obj[0].getDivisorList(), list_of_obj[1].getDivisorList()) << "\n";
+	std::cout << "largest common divisor: " << findNODWithBind(list_of_obj[8].getDivisorList(), list_of_obj[9].getDivisorList()) << "\n";
 	return EXIT_SUCCESS;
 }
