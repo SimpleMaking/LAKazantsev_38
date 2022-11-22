@@ -20,7 +20,6 @@ private:
 public:
 	NumberDivisors(int number);
 	NumberDivisors() : number(0) {}
-	bool divCounter(size_t number);
 	vector<int>& getDivisorList();
 	int getNumber();
 	void copy(NumberDivisors&);
